@@ -581,7 +581,7 @@ namespace ImGuiNET
         public static bool BeginPopupContextItem()
         {
             byte* native_str_id = null;
-            ImGuiMouseButton mouse_button = (ImGuiMouseButton)1;
+            int mouse_button = 1;
             byte ret = ImGuiNative.igBeginPopupContextItem(native_str_id, mouse_button);
             return ret != 0;
         }
@@ -605,7 +605,7 @@ namespace ImGuiNET
                 native_str_id[native_str_id_offset] = 0;
             }
             else { native_str_id = null; }
-            ImGuiMouseButton mouse_button = (ImGuiMouseButton)1;
+            int mouse_button = 1;
             byte ret = ImGuiNative.igBeginPopupContextItem(native_str_id, mouse_button);
             if (str_id_byteCount > Util.StackAllocationSizeLimit)
             {
@@ -613,7 +613,7 @@ namespace ImGuiNET
             }
             return ret != 0;
         }
-        public static bool BeginPopupContextItem(string str_id, ImGuiMouseButton mouse_button)
+        public static bool BeginPopupContextItem(string str_id, int mouse_button)
         {
             byte* native_str_id;
             int str_id_byteCount = 0;
@@ -643,7 +643,7 @@ namespace ImGuiNET
         public static bool BeginPopupContextVoid()
         {
             byte* native_str_id = null;
-            ImGuiMouseButton mouse_button = (ImGuiMouseButton)1;
+            int mouse_button = 1;
             byte ret = ImGuiNative.igBeginPopupContextVoid(native_str_id, mouse_button);
             return ret != 0;
         }
@@ -667,7 +667,7 @@ namespace ImGuiNET
                 native_str_id[native_str_id_offset] = 0;
             }
             else { native_str_id = null; }
-            ImGuiMouseButton mouse_button = (ImGuiMouseButton)1;
+            int mouse_button = 1;
             byte ret = ImGuiNative.igBeginPopupContextVoid(native_str_id, mouse_button);
             if (str_id_byteCount > Util.StackAllocationSizeLimit)
             {
@@ -675,7 +675,7 @@ namespace ImGuiNET
             }
             return ret != 0;
         }
-        public static bool BeginPopupContextVoid(string str_id, ImGuiMouseButton mouse_button)
+        public static bool BeginPopupContextVoid(string str_id, int mouse_button)
         {
             byte* native_str_id;
             int str_id_byteCount = 0;
@@ -705,7 +705,7 @@ namespace ImGuiNET
         public static bool BeginPopupContextWindow()
         {
             byte* native_str_id = null;
-            ImGuiMouseButton mouse_button = (ImGuiMouseButton)1;
+            int mouse_button = 1;
             byte also_over_items = 1;
             byte ret = ImGuiNative.igBeginPopupContextWindow(native_str_id, mouse_button, also_over_items);
             return ret != 0;
@@ -730,7 +730,7 @@ namespace ImGuiNET
                 native_str_id[native_str_id_offset] = 0;
             }
             else { native_str_id = null; }
-            ImGuiMouseButton mouse_button = (ImGuiMouseButton)1;
+            int mouse_button = 1;
             byte also_over_items = 1;
             byte ret = ImGuiNative.igBeginPopupContextWindow(native_str_id, mouse_button, also_over_items);
             if (str_id_byteCount > Util.StackAllocationSizeLimit)
@@ -739,7 +739,7 @@ namespace ImGuiNET
             }
             return ret != 0;
         }
-        public static bool BeginPopupContextWindow(string str_id, ImGuiMouseButton mouse_button)
+        public static bool BeginPopupContextWindow(string str_id, int mouse_button)
         {
             byte* native_str_id;
             int str_id_byteCount = 0;
@@ -767,7 +767,7 @@ namespace ImGuiNET
             }
             return ret != 0;
         }
-        public static bool BeginPopupContextWindow(string str_id, ImGuiMouseButton mouse_button, bool also_over_items)
+        public static bool BeginPopupContextWindow(string str_id, int mouse_button, bool also_over_items)
         {
             byte* native_str_id;
             int str_id_byteCount = 0;
@@ -5782,18 +5782,18 @@ namespace ImGuiNET
         }
         public static Vector2 GetMouseDragDelta()
         {
-            ImGuiMouseButton button = (ImGuiMouseButton)0;
+            int button = 0;
             float lock_threshold = -1.0f;
             Vector2 ret = ImGuiNative.igGetMouseDragDelta(button, lock_threshold);
             return ret;
         }
-        public static Vector2 GetMouseDragDelta(ImGuiMouseButton button)
+        public static Vector2 GetMouseDragDelta(int button)
         {
             float lock_threshold = -1.0f;
             Vector2 ret = ImGuiNative.igGetMouseDragDelta(button, lock_threshold);
             return ret;
         }
-        public static Vector2 GetMouseDragDelta(ImGuiMouseButton button, float lock_threshold)
+        public static Vector2 GetMouseDragDelta(int button, float lock_threshold)
         {
             Vector2 ret = ImGuiNative.igGetMouseDragDelta(button, lock_threshold);
             return ret;
@@ -8030,11 +8030,11 @@ namespace ImGuiNET
         }
         public static bool IsItemClicked()
         {
-            ImGuiMouseButton mouse_button = (ImGuiMouseButton)0;
+            int mouse_button = 0;
             byte ret = ImGuiNative.igIsItemClicked(mouse_button);
             return ret != 0;
         }
-        public static bool IsItemClicked(ImGuiMouseButton mouse_button)
+        public static bool IsItemClicked(int mouse_button)
         {
             byte ret = ImGuiNative.igIsItemClicked(mouse_button);
             return ret != 0;
@@ -8102,35 +8102,42 @@ namespace ImGuiNET
             byte ret = ImGuiNative.igIsKeyReleased(user_key_index);
             return ret != 0;
         }
-        public static bool IsMouseClicked(ImGuiMouseButton button)
+        public static bool IsMouseClicked(int button)
         {
             byte repeat = 0;
             byte ret = ImGuiNative.igIsMouseClicked(button, repeat);
             return ret != 0;
         }
-        public static bool IsMouseClicked(ImGuiMouseButton button, bool repeat)
+        public static bool IsMouseClicked(int button, bool repeat)
         {
             byte native_repeat = repeat ? (byte)1 : (byte)0;
             byte ret = ImGuiNative.igIsMouseClicked(button, native_repeat);
             return ret != 0;
         }
-        public static bool IsMouseDoubleClicked(ImGuiMouseButton button)
+        public static bool IsMouseDoubleClicked(int button)
         {
             byte ret = ImGuiNative.igIsMouseDoubleClicked(button);
             return ret != 0;
         }
-        public static bool IsMouseDown(ImGuiMouseButton button)
+        public static bool IsMouseDown(int button)
         {
             byte ret = ImGuiNative.igIsMouseDown(button);
             return ret != 0;
         }
-        public static bool IsMouseDragging(ImGuiMouseButton button)
+        public static bool IsMouseDragging()
+        {
+            int button = 0;
+            float lock_threshold = -1.0f;
+            byte ret = ImGuiNative.igIsMouseDragging(button, lock_threshold);
+            return ret != 0;
+        }
+        public static bool IsMouseDragging(int button)
         {
             float lock_threshold = -1.0f;
             byte ret = ImGuiNative.igIsMouseDragging(button, lock_threshold);
             return ret != 0;
         }
-        public static bool IsMouseDragging(ImGuiMouseButton button, float lock_threshold)
+        public static bool IsMouseDragging(int button, float lock_threshold)
         {
             byte ret = ImGuiNative.igIsMouseDragging(button, lock_threshold);
             return ret != 0;
@@ -8161,7 +8168,7 @@ namespace ImGuiNET
                 return ret != 0;
             }
         }
-        public static bool IsMouseReleased(ImGuiMouseButton button)
+        public static bool IsMouseReleased(int button)
         {
             byte ret = ImGuiNative.igIsMouseReleased(button);
             return ret != 0;
@@ -9020,7 +9027,7 @@ namespace ImGuiNET
         public static bool OpenPopupOnItemClick()
         {
             byte* native_str_id = null;
-            ImGuiMouseButton mouse_button = (ImGuiMouseButton)1;
+            int mouse_button = 1;
             byte ret = ImGuiNative.igOpenPopupOnItemClick(native_str_id, mouse_button);
             return ret != 0;
         }
@@ -9044,7 +9051,7 @@ namespace ImGuiNET
                 native_str_id[native_str_id_offset] = 0;
             }
             else { native_str_id = null; }
-            ImGuiMouseButton mouse_button = (ImGuiMouseButton)1;
+            int mouse_button = 1;
             byte ret = ImGuiNative.igOpenPopupOnItemClick(native_str_id, mouse_button);
             if (str_id_byteCount > Util.StackAllocationSizeLimit)
             {
@@ -9052,7 +9059,7 @@ namespace ImGuiNET
             }
             return ret != 0;
         }
-        public static bool OpenPopupOnItemClick(string str_id, ImGuiMouseButton mouse_button)
+        public static bool OpenPopupOnItemClick(string str_id, int mouse_button)
         {
             byte* native_str_id;
             int str_id_byteCount = 0;
@@ -9978,10 +9985,10 @@ namespace ImGuiNET
         }
         public static void ResetMouseDragDelta()
         {
-            ImGuiMouseButton button = (ImGuiMouseButton)0;
+            int button = 0;
             ImGuiNative.igResetMouseDragDelta(button);
         }
-        public static void ResetMouseDragDelta(ImGuiMouseButton button)
+        public static void ResetMouseDragDelta(int button)
         {
             ImGuiNative.igResetMouseDragDelta(button);
         }
@@ -10386,9 +10393,9 @@ namespace ImGuiNET
         {
             ImGuiNative.igSetKeyboardFocusHere(offset);
         }
-        public static void SetMouseCursor(ImGuiMouseCursor cursor_type)
+        public static void SetMouseCursor(ImGuiMouseCursor type)
         {
-            ImGuiNative.igSetMouseCursor(cursor_type);
+            ImGuiNative.igSetMouseCursor(type);
         }
         public static void SetNextItemOpen(bool is_open)
         {

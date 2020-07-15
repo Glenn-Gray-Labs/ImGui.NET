@@ -44,14 +44,14 @@ namespace ImGuiNET
         public ImVector<IntPtr> _TextureIdStack => new ImVector<IntPtr>(NativePtr->_TextureIdStack);
         public ImVector<Vector2> _Path => new ImVector<Vector2>(NativePtr->_Path);
         public ref ImDrawListSplitter _Splitter => ref Unsafe.AsRef<ImDrawListSplitter>(&NativePtr->_Splitter);
-        public void AddBezierCurve(Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, uint col, float thickness)
+        public void AddBezierCurve(Vector2 pos0, Vector2 cp0, Vector2 cp1, Vector2 pos1, uint col, float thickness)
         {
             int num_segments = 0;
-            ImGuiNative.ImDrawList_AddBezierCurve(NativePtr, p1, p2, p3, p4, col, thickness, num_segments);
+            ImGuiNative.ImDrawList_AddBezierCurve(NativePtr, pos0, cp0, cp1, pos1, col, thickness, num_segments);
         }
-        public void AddBezierCurve(Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, uint col, float thickness, int num_segments)
+        public void AddBezierCurve(Vector2 pos0, Vector2 cp0, Vector2 cp1, Vector2 pos1, uint col, float thickness, int num_segments)
         {
-            ImGuiNative.ImDrawList_AddBezierCurve(NativePtr, p1, p2, p3, p4, col, thickness, num_segments);
+            ImGuiNative.ImDrawList_AddBezierCurve(NativePtr, pos0, cp0, cp1, pos1, col, thickness, num_segments);
         }
         public void AddCallback(IntPtr callback, IntPtr callback_data)
         {
@@ -171,19 +171,6 @@ namespace ImGuiNET
         public void AddLine(Vector2 p1, Vector2 p2, uint col, float thickness)
         {
             ImGuiNative.ImDrawList_AddLine(NativePtr, p1, p2, col, thickness);
-        }
-        public void AddNgon(Vector2 center, float radius, uint col, int num_segments)
-        {
-            float thickness = 1.0f;
-            ImGuiNative.ImDrawList_AddNgon(NativePtr, center, radius, col, num_segments, thickness);
-        }
-        public void AddNgon(Vector2 center, float radius, uint col, int num_segments, float thickness)
-        {
-            ImGuiNative.ImDrawList_AddNgon(NativePtr, center, radius, col, num_segments, thickness);
-        }
-        public void AddNgonFilled(Vector2 center, float radius, uint col, int num_segments)
-        {
-            ImGuiNative.ImDrawList_AddNgonFilled(NativePtr, center, radius, col, num_segments);
         }
         public void AddPolyline(ref Vector2 points, int num_points, uint col, bool closed, float thickness)
         {
@@ -312,14 +299,14 @@ namespace ImGuiNET
         {
             ImGuiNative.ImDrawList_PathArcToFast(NativePtr, center, radius, a_min_of_12, a_max_of_12);
         }
-        public void PathBezierCurveTo(Vector2 p2, Vector2 p3, Vector2 p4)
+        public void PathBezierCurveTo(Vector2 p1, Vector2 p2, Vector2 p3)
         {
             int num_segments = 0;
-            ImGuiNative.ImDrawList_PathBezierCurveTo(NativePtr, p2, p3, p4, num_segments);
+            ImGuiNative.ImDrawList_PathBezierCurveTo(NativePtr, p1, p2, p3, num_segments);
         }
-        public void PathBezierCurveTo(Vector2 p2, Vector2 p3, Vector2 p4, int num_segments)
+        public void PathBezierCurveTo(Vector2 p1, Vector2 p2, Vector2 p3, int num_segments)
         {
-            ImGuiNative.ImDrawList_PathBezierCurveTo(NativePtr, p2, p3, p4, num_segments);
+            ImGuiNative.ImDrawList_PathBezierCurveTo(NativePtr, p1, p2, p3, num_segments);
         }
         public void PathClear()
         {
@@ -386,10 +373,6 @@ namespace ImGuiNET
         public void PrimReserve(int idx_count, int vtx_count)
         {
             ImGuiNative.ImDrawList_PrimReserve(NativePtr, idx_count, vtx_count);
-        }
-        public void PrimUnreserve(int idx_count, int vtx_count)
-        {
-            ImGuiNative.ImDrawList_PrimUnreserve(NativePtr, idx_count, vtx_count);
         }
         public void PrimVtx(Vector2 pos, Vector2 uv, uint col)
         {
